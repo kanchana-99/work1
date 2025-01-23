@@ -18,7 +18,7 @@ if (isset($_GET['did'])) {
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Manage Users</title>
+    <title>Manage Category</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -115,7 +115,7 @@ if (isset($_GET['did'])) {
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Manage Users</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">Manage Category</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -144,25 +144,21 @@ if (isset($_GET['did'])) {
               <!-- Start col -->
                              <div class="col-md-6">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Bordered Table</h3></div>
+                  <div class="card-header"><h3 class="card-title">manage category</h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
                         <th style="width: 10px">#</th>
-                          <th>ชื่อ</th>
-                          <th>ชื่อผู้ใช้งาน</th>
-                          <th>อีเมลล์</th>
-                          <th>เบอร์โทรศัพท์</th>
-                          <th>ตัวเลือก</th>
+                          <th>ชื่อประเภทสินค้า</th>
                         </tr>
                       </thead>
                       <tbody>
                       <tbody>
                         <?php
                         //เชื่อมต่อกับ database
-                            $ret="select * from userdata";
+                            $ret="select * from category";
                             $query = $dbh ->prepare($ret);
                             $query -> execute();
                             $results = $query -> fetchAll(PDO::FETCH_OBJ);
@@ -173,12 +169,9 @@ if (isset($_GET['did'])) {
                         ?>
                                     <tr class="align-middle">
                                     <td><?php echo $cnt;?></td>
-                                    <td><?php echo $row->fullname;?></td>
-                                    <td><?php echo $row->username;?></td>
-                                    <td><?php echo $row->useremail;?></td>
-                                    <td><?php echo $row->usermobile;?></td>
+                                    <td><?php echo $row->cat_name;?></td>
                                     <td>
-                                            <a href="edit-user.php?id=<?php echo $row->id?>" class="btn btn-warning">แก้ไข</a>
+                                            <a href="edit-user.php?id=<?php echo $row->id?>" class="btn btn-info">เพิ่ม</a>
                                             <a href="manage_user.php?id=<?php echo $row->did?>" class="btn btn-danger" 
                                             onclick="return confirm ('do yo wnat to delete?')">ลบ</a>
                                     </td>
