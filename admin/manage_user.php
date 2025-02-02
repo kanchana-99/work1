@@ -115,7 +115,11 @@ if (isset($_GET['did'])) {
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
+<<<<<<< HEAD
               <div class="col-sm-6"><h3 class="mb-0">จัดการผู้ใช้งาน</h3></div>
+=======
+              <div class="col-sm-6"><h3 class="mb-0">Manage Users</h3></div>
+>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -142,14 +146,21 @@ if (isset($_GET['did'])) {
             <!--begin::Row-->
             <div class="row">
               <!-- Start col -->
+<<<<<<< HEAD
                              <div class="col-md-12">
                 <div class="card mb-4">
                   <div class="card-header"><h3 class="card-title">จัดการผู้ใช้งาน</h3></div>
+=======
+                             <div class="col-md-6">
+                <div class="card mb-4">
+                  <div class="card-header"><h3 class="card-title">Bordered Table</h3></div>
+>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
+<<<<<<< HEAD
                         
                         <th style="width: 10px"> </th>
                           <th><center>ชื่อ</center> </th>
@@ -161,13 +172,29 @@ if (isset($_GET['did'])) {
                         </tr>
                       </thead>
                       <tbody>
+=======
+                        <th style="width: 10px">#</th>
+                          <th>ชื่อ</th>
+                          <th>ชื่อผู้ใช้งาน</th>
+                          <th>อีเมลล์</th>
+                          <th>เบอร์โทรศัพท์</th>
+                          <th>ตัวเลือก</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tbody>
+>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
                         <?php
                         //เชื่อมต่อกับ database
                             $ret="select * from userdata";
                             $query = $dbh ->prepare($ret);
                             $query -> execute();
                             $results = $query -> fetchAll(PDO::FETCH_OBJ);
+<<<<<<< HEAD
                             $cnt = 1;
+=======
+                            $cnc = 1;
+>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
  
                             if($query->rowCount() >0) {
                                 foreach($results as $row) {
@@ -179,6 +206,7 @@ if (isset($_GET['did'])) {
                                     <td><?php echo $row->useremail;?></td>
                                     <td><?php echo $row->usermobile;?></td>
                                     <td>
+<<<<<<< HEAD
                                       <center>
                                             <a href="edit-user.php?id=<?php echo $row->id?>" class="btn btn-warning">แก้ไข</a>
                                             &nbsp; &nbsp;
@@ -188,6 +216,15 @@ if (isset($_GET['did'])) {
                                     </td>
                                     </tr>
                         <?php     $cnt=$cnt+1;
+=======
+                                            <a href="edit-user.php?id=<?php echo $row->id?>" class="btn btn-warning">แก้ไข</a>
+                                            <a href="manage_user.php?id=<?php echo $row->did?>" class="btn btn-danger" 
+                                            onclick="return confirm ('do yo wnat to delete?')">ลบ</a>
+                                    </td>
+
+                                    </tr>
+            <?php                   $cnt=$cnt+1;
+>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
                                }  
                             }    
                         ?>

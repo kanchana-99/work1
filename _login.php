@@ -9,6 +9,7 @@ error_reporting(0);
   <title>SignUp Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -167,6 +168,16 @@ error_reporting(0);
 
 
 <!-- <div class="container">
+=======
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
   <h2>Login Page</h2>
   <form action="checklogin.php" method="post" >
 
@@ -186,9 +197,13 @@ error_reporting(0);
    
     <button type="submit" class="btn btn-success" name="login" id="login">Login</button>
   </form>
+<<<<<<< HEAD
 </div> -->
 
 
 
+=======
+</div>
+>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
 </body>
 </html>

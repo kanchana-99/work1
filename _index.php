@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <title>ร้าน cute4U</title>
+=======
+  <title>My Project1</title>
+>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
