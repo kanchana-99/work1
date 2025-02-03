@@ -6,7 +6,7 @@ error_reporting(0);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>SignUp Page</title>
+  <title>เข้าสู่ระบบ ร้านcute4U</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -130,6 +130,13 @@ error_reporting(0);
     border-top: 1px solid #e7e7e7;
     display: block;
 }
+.form-bg {
+    display: flex;
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    height: 100vh; /* ให้ความสูงเต็มจอ */
+    background-color: #ffcad4; /* สีพื้นหลัง (เลือกได้) */
+}
 
 
   </style>
@@ -143,20 +150,19 @@ error_reporting(0);
             <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
                 <div class="form-container">
                     <form class="form-horizontal" action="checklogin.php" method="post">
-                        <h3 class="title">Login Form</h3>
+                        <h3 class="title">เข้าสู่ระบบ ร้านcute4U</h3>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-user"></i></span>
                             <!-- <input class="form-control" type="email" placeholder="Username"> -->
-                            <input type="text" class="form-control" id="username" placeholder="Enter UserName" name="username" required>
+                            <input type="text" class="form-control" id="username" placeholder="ชื่อผู้ใช้งาน" name="username" required>
                         </div>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-lock"></i></span>
                             <!-- <input class="form-control" type="password" placeholder="Password"> -->
-                            <input type="password" class="form-control" id="loginpassword" placeholder="Enter password" name="loginpassword" required>
+                            <input type="password" class="form-control" id="loginpassword" placeholder="รหัสผ่าน" name="loginpassword" required>
                         </div>
-                        <button class="btn signin" name="login" id="login">Log in</button>
-                        <span class="forgot-pass"><a href="#">Lost password?</a></span>
-                        <span class="register"><a href="signup.php">Register / Signup</a></span>
+                        <button class="btn signin" name="login" id="login">login</button>
+                        <span class="register"><a href="signup.php">สมัครสมาชิก ที่นี่</a></span>
                     </form>
                 </div>
             </div>

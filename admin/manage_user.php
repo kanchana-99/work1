@@ -8,9 +8,16 @@ if (isset($_GET['did'])) {
   $query = $dbh->prepare($sql);
   $query->bindParam(':did', $did, PDO::PARAM_STR);
   $query->execute();
-  echo "<script>alert('Data has been deleted!')</script>";
-  echo "<script>window.location.href='manage_user.php'</script>";
+
+  if ($query->rowCount() > 0) {
+    echo "<script>alert('ข้อมูลถูกลบเรียบร้อยแล้ว !');</script>";
+  } else {
+    echo "<script>alert('ไม่พบข้อมูลที่ต้องการลบ หรือข้อมูลถูกลบไปแล้ว');</script>";
+  }
+
+  echo "<script>window.location.href='manage_user.php';</script>";
 }
+
 ?>
 
 <!doctype html>
@@ -18,7 +25,7 @@ if (isset($_GET['did'])) {
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Manage Users</title>
+    <title>จัดการผู้ใช้งาน</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -115,17 +122,7 @@ if (isset($_GET['did'])) {
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-<<<<<<< HEAD
               <div class="col-sm-6"><h3 class="mb-0">จัดการผู้ใช้งาน</h3></div>
-=======
-              <div class="col-sm-6"><h3 class="mb-0">Manage Users</h3></div>
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-              </div>
             </div>
             <!--end::Row-->
           </div>
@@ -146,56 +143,30 @@ if (isset($_GET['did'])) {
             <!--begin::Row-->
             <div class="row">
               <!-- Start col -->
-<<<<<<< HEAD
-                             <div class="col-md-12">
+             <div class="col-md-12">
                 <div class="card mb-4">
                   <div class="card-header"><h3 class="card-title">จัดการผู้ใช้งาน</h3></div>
-=======
-                             <div class="col-md-6">
-                <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Bordered Table</h3></div>
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table class="table table-bordered">
                       <thead>
-                        <tr>
-<<<<<<< HEAD
-                        
+                        <tr>                        
                         <th style="width: 10px"> </th>
                           <th><center>ชื่อ</center> </th>
                           <th><center>ชื่อผู้ใช้งาน<center></th>
                           <th><center>อีเมลล์<center></th>
                           <th><center>เบอร์โทรศัพท์<center></th>
                           <th><center>ตัวเลือก<center></th>
-                         
                         </tr>
-                      </thead>
-                      <tbody>
-=======
-                        <th style="width: 10px">#</th>
-                          <th>ชื่อ</th>
-                          <th>ชื่อผู้ใช้งาน</th>
-                          <th>อีเมลล์</th>
-                          <th>เบอร์โทรศัพท์</th>
-                          <th>ตัวเลือก</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      <tbody>
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
+                        </thead>
                         <?php
                         //เชื่อมต่อกับ database
                             $ret="select * from userdata";
                             $query = $dbh ->prepare($ret);
                             $query -> execute();
                             $results = $query -> fetchAll(PDO::FETCH_OBJ);
-<<<<<<< HEAD
                             $cnt = 1;
-=======
                             $cnc = 1;
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
- 
                             if($query->rowCount() >0) {
                                 foreach($results as $row) {
                         ?>
@@ -206,25 +177,16 @@ if (isset($_GET['did'])) {
                                     <td><?php echo $row->useremail;?></td>
                                     <td><?php echo $row->usermobile;?></td>
                                     <td>
-<<<<<<< HEAD
                                       <center>
                                             <a href="edit-user.php?id=<?php echo $row->id?>" class="btn btn-warning">แก้ไข</a>
                                             &nbsp; &nbsp;
-                                            <a href="manage_user.php?id=<?php echo $row->did?>" class="btn btn-danger" 
-                                            onclick="return confirm ('ต้องการที่จะลบข้อมูลนี้หรือไม่?')">ลบ</a>
+                                            <a href="manage_user.php?did=<?php echo $row->id; ?>" class="btn btn-danger" 
+                                            onclick="return confirm('ต้องการที่จะลบข้อมูลนี้หรือไม่?')">ลบ</a>
+
                                       </center>
                                     </td>
                                     </tr>
                         <?php     $cnt=$cnt+1;
-=======
-                                            <a href="edit-user.php?id=<?php echo $row->id?>" class="btn btn-warning">แก้ไข</a>
-                                            <a href="manage_user.php?id=<?php echo $row->did?>" class="btn btn-danger" 
-                                            onclick="return confirm ('do yo wnat to delete?')">ลบ</a>
-                                    </td>
-
-                                    </tr>
-            <?php                   $cnt=$cnt+1;
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
                                }  
                             }    
                         ?>

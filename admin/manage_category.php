@@ -4,12 +4,17 @@ error_reporting(0);
 
 if (isset($_GET['did'])) {  
   $did = $_GET['did'];
-  $sql = "DELETE FROM userdata WHERE id = :did";
+  $sql = "DELETE FROM category WHERE cat_id = :did";
   $query = $dbh->prepare($sql);
   $query->bindParam(':did', $did, PDO::PARAM_STR);
   $query->execute();
-  echo "<script>alert('Data has been deleted!')</script>";
-  echo "<script>window.location.href='manage_user.php'</script>";
+  if ($query->rowCount() > 0) {
+    echo "<script>alert('ข้อมูลถูกลบเรียบร้อยแล้ว !');</script>";
+  } else {
+    echo "<script>alert('ไม่พบข้อมูลที่ต้องการลบ หรือข้อมูลถูกลบไปแล้ว');</script>";
+  }
+
+  echo "<script>window.location.href='manage_category.php';</script>";
 }
 ?>
 
@@ -18,7 +23,7 @@ if (isset($_GET['did'])) {
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Manage Category</title>
+    <title>จัดการประเภทสินค้า</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -115,13 +120,7 @@ if (isset($_GET['did'])) {
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Manage Category</h3></div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-              </div>
+              <div class="col-sm-6"><h3 class="mb-0">จัดการประเภทสินค้า</h3></div>
             </div>
             <!--end::Row-->
           </div>
@@ -142,28 +141,26 @@ if (isset($_GET['did'])) {
             <!--begin::Row-->
             <div class="row">
               <!-- Start col -->
-                             <div class="col-md-6">
+             <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">manage category</h3></div>
+                  <div class="card-header"><h3 class="card-title">จัดการประเภทสินค้า</h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table class="table table-bordered">
                       <thead>
-                        <tr>
-                        <th style="width: 10px">#</th>
-                          <th>ชื่อประเภทสินค้า</th>
+                        <tr>                        
+                        <th style="width: 10px"> </th>
+                          <th><center>ประเภทสินค้า</center> </th>
                         </tr>
-                      </thead>
-                      <tbody>
-                      <tbody>
+                        </thead>
                         <?php
                         //เชื่อมต่อกับ database
                             $ret="select * from category";
                             $query = $dbh ->prepare($ret);
                             $query -> execute();
                             $results = $query -> fetchAll(PDO::FETCH_OBJ);
+                            $cnt = 1;
                             $cnc = 1;
- 
                             if($query->rowCount() >0) {
                                 foreach($results as $row) {
                         ?>
@@ -171,13 +168,16 @@ if (isset($_GET['did'])) {
                                     <td><?php echo $cnt;?></td>
                                     <td><?php echo $row->cat_name;?></td>
                                     <td>
-                                            <a href="edit-user.php?id=<?php echo $row->id?>" class="btn btn-info">เพิ่ม</a>
-                                            <a href="manage_user.php?id=<?php echo $row->did?>" class="btn btn-danger" 
-                                            onclick="return confirm ('do yo wnat to delete?')">ลบ</a>
-                                    </td>
+                                      <center>
+                                            <a href="edit-category.php?id=<?php echo $row->id?>" class="btn btn-warning">แก้ไข</a>
+                                            &nbsp; &nbsp;
+                                            <a href="manage_category.php?did=<?php echo $row->id; ?>" class="btn btn-danger" 
+                                            onclick="return confirm('ต้องการที่จะลบข้อมูลนี้หรือไม่?')">ลบ</a>
 
+                                      </center>
+                                    </td>
                                     </tr>
-            <?php                   $cnt=$cnt+1;
+                        <?php     $cnt=$cnt+1;
                                }  
                             }    
                         ?>

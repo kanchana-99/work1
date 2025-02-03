@@ -26,11 +26,7 @@ if($_SESSION['user_type']==1){
         $query->bindParam(':usermobile',$usermobile,PDO::PARAM_STR);
         $query->bindParam(':hasedpassword',$hasedpassword,PDO::PARAM_STR);
         $query->execute();
-<<<<<<< HEAD
         echo "<script>alert('ข้อมูลผู้ใช้งานถูกปรับปรุงแล้ว!')</script>";
-=======
-        echo "<script>alert('User has been updated')</script>";
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
         echo "<script>window.location.href='manage_user.php'</script>";
        
  

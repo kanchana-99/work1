@@ -12,26 +12,25 @@
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>
                     Dashboard
-                    <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="manage_user.php" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>users</p>
+                      <p>จัดการผู้ใช้งาน</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="manage_category.php" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>category</p>
+                      <p>จัดการประเภทสินค้า</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
+                    <a href="manage_product.php" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>product</p>
+                      <p>จัดการสินค้า</p>
                     </a>
                   </li>
                 </ul>

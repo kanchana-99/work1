@@ -8,7 +8,7 @@ error_reporting(0);
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Edit Users</title>
+    <title>แก้ไขข้อมูลผู้ใช้งาน</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -105,16 +105,9 @@ error_reporting(0);
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-<<<<<<< HEAD
               <div class="col-sm-6"><h3 class="mb-0">แก้ไขข้อมูลผู้ใช้งาน</h3></div>
-=======
-              <div class="col-sm-6"><h3 class="mb-0">Edit Users</h3></div>
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
               <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
+              
               </div>
             </div>
             <!--end::Row-->
@@ -136,15 +129,9 @@ error_reporting(0);
             <!--begin::Row-->
             <div class="row">
               <!-- Start col -->
-<<<<<<< HEAD
             <div class="col-md-12">
-                <div class="card mb-4">
+                <div class="card mb-12">
                   <div class="card-header"><h3 class="card-title">แก้ไขข้อมูลผู้ใช้งาน</h3></div>
-=======
-            <div class="col-md-6">
-                <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Edit User</h3></div>
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
                   <!-- /.card-header -->
                   <div class="card-body">
                   <form action="edit-user-api.php" method="post" >
@@ -160,7 +147,6 @@ error_reporting(0);
 
                     ?>
                         <input type="hidden" name="eid" id="eid" value="<?php echo $editid; ?>">
-<<<<<<< HEAD
                                 <div class="form-group">
                                   <label for="fullname">ชื่อ-นามสกุล:</label>
                                   <input type="text" class="form-control" id="fullname" placeholder="Enter FullName" name="fullname" 
@@ -189,43 +175,13 @@ error_reporting(0);
                                   <label for="loginpassword">รหัสผ่าน:</label>
                                   <input type="password" class="form-control" id="loginpassword" placeholder="Enter password" name="loginpassword" 
                                   required value="<?php echo $row->loginpassword; ?>">
-=======
-                        <div class="form-group">
-                                <label for="fullname">FullName:</label>
-                                <input type="text" class="form-control" id="fullname" placeholder="Enter FullName" name="fullname" 
-                                required value="<?php echo $row->fullname; ?>">
-                                </div>
-                                <div class="form-group">
-                                <label for="username">UserName:</label>
-                                <input type="text" class="form-control" id="username" placeholder="Enter UserName" name="username" 
-                                required value="<?php echo $row->username; ?>">
-                                </div>
-                                <div class="form-group">
-                                <label for="useremail">Email:</label>
-                                <input type="email" class="form-control" id="useremail" placeholder="Enter Email" name="useremail" 
-                                required value="<?php echo $row->email; ?>">
-                                </div>
-                                <div class="form-group">
-                                <label for="usermobile">Mobile:</label>
-                                <input type="text" maxlength="10" pattern="[0-9]{10}" title="ตัวเลขสิบหลักเท่านั้น" class="form-control" id="usermobile" placeholder="Enter Mobile" name="usermobile" 
-                                required value="<?php echo $row->usermobile; ?>">
-                                </div>
-                                <div class="form-group">
-                                <label for="loginpassword">Password:</label>
-                                <input type="password" class="form-control" id="loginpassword" placeholder="Enter password" name="loginpassword" 
-                                required value="<?php echo $row->password; ?>">
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
                                 </div>
                     <?php
                                 }
                             }
                         ?>
-<<<<<<< HEAD
                         <br> 
-                            <button type="submit" class="btn btn-success" name="update" id="update">บันทึกข้อมูลใหม่</button>
-=======
-                                <button type="submit" class="btn btn-success" name="update" id="update">Update</button>
->>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
+                            <button type="submit" class="btn btn-success" name="update" id="update">ปรับปรุงข้อมูล</button>
                             </form>
 
                     </div>
