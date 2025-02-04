@@ -2,20 +2,24 @@
 include("../include/config.php");
 error_reporting(0);
 
-if (isset($_GET['did'])) {  
-  $did = $_GET['did'];
-  $sql = "DELETE FROM category WHERE cat_id = :did";
-  $query = $dbh->prepare($sql);
-  $query->bindParam(':did', $did, PDO::PARAM_STR);
-  $query->execute();
-  if ($query->rowCount() > 0) {
-    echo "<script>alert('ข้อมูลถูกลบเรียบร้อยแล้ว !');</script>";
-  } else {
-    echo "<script>alert('ไม่พบข้อมูลที่ต้องการ หรือข้อมูลถูกลบไปแล้ว');</script>";
-  }
+if (isset($_POST['submit'])) { // ตรวจสอบว่ามีการกดปุ่ม submit
+  $cat_name = $_POST['cat_name'];
 
-  echo "<script>window.location.href='manage_category.php';</script>";
+  if (!empty($cat_name)) {
+      $sql = "INSERT INTO category (cat_name) VALUES (:cat_name)";
+      $query = $dbh->prepare($sql);
+      $query->bindParam(':cat_name', $cat_name, PDO::PARAM_STR);
+      
+      if ($query->execute()) {
+          echo "<script>alert('บันทึกข้อมูลเรียบร้อย'); window.location.href='manage_category.php';</script>";
+      } else {
+          echo "<script>alert('เกิดข้อผิดพลาด! ไม่สามารถบันทึกข้อมูลได้');</script>";
+      }
+  } else {
+      echo "<script>alert('กรุณากรอกข้อมูลให้ครบ');</script>";
+  }
 }
+
 ?>
 
 <!doctype html>
@@ -23,7 +27,7 @@ if (isset($_GET['did'])) {
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>จัดการประเภทสินค้า</title>
+    <title>เพิ่มประเภทสินค้า</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -120,12 +124,7 @@ if (isset($_GET['did'])) {
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">จัดการประเภทสินค้า</h3></div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="btn btn-info"><a href="add_category.php">เพิ่ม</a></li>
-                </ol>
-              </div>
+              <div class="col-sm-6"><h3 class="mb-0">เพิ่มประเภทสินค้า</h3></div>
             </div>
             <!--end::Row-->
           </div>
@@ -147,48 +146,22 @@ if (isset($_GET['did'])) {
             <div class="row">
               <!-- Start col -->
              <div class="col-md-12">
-                <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">จัดการประเภทสินค้า</h3></div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>                        
-                        <th style="width: 10px"> </th>
-                          <th><center>ประเภทสินค้า</center> </th>
-                          <th><center>ตัวเลือก</center> </th>
-                        </tr>
-                        </thead>
-                        <?php
-                        //เชื่อมต่อกับ database
-                            $ret="select * from category";
-                            $query = $dbh ->prepare($ret);
-                            $query -> execute();
-                            $results = $query -> fetchAll(PDO::FETCH_OBJ);
-                            $cnt = 1;
-                            $cnc = 1;
-                            if($query->rowCount() >0) {
-                                foreach($results as $row) {
-                        ?>
-                                    <tr class="align-middle">
-                                    <td><?php echo $cnt;?></td>
-                                    <td><?php echo $row->cat_name;?></td>
-                                    <td>
-                                      <center>
-                                            <a href="edit-category.php?id=<?php echo $row->id?>" class="btn btn-warning">แก้ไข</a>
-                                            &nbsp; &nbsp;
-                                            <a href="manage_category.php?did=<?php echo $row->id; ?>" class="btn btn-danger" 
-                                            onclick="return confirm('ต้องการที่จะลบข้อมูลนี้หรือไม่?')">ลบ</a>
-
-                                      </center>
-                                    </td>
-                                    </tr>
-                        <?php     $cnt=$cnt+1;
-                               }  
-                            }    
-                        ?>
-                      </tbody>
-                    </table>
+             <div class="card mb-4">
+                      <div class="card-header"><h3 class="card-title">เพิ่มประเภทสินค้า</h3></div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                          <form action="manage_category.php" method="post">
+                              <div class="form-group">
+                                  <label for="cat_name">ประเภทสินค้า:</label>
+                                  <input name="cat_name" type="text" required class="form-control" id="cat_name" />
+                              </div>
+                              <br>
+                              <div class="form-group">
+                                  <button type="submit" class="btn btn-success btn-sm" name="submit" id="btn"> บันทึก </button>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer clearfix">
