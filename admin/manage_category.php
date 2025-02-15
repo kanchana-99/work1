@@ -18,6 +18,11 @@ if (isset($_GET['did'])) {
 }
 ?>
 
+<?php if (isset($_GET['success'])) { ?>
+    <script>alert("บันทึกข้อมูลเรียบร้อย");</script>
+<?php } ?>
+
+
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
@@ -121,11 +126,6 @@ if (isset($_GET['did'])) {
             <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6"><h3 class="mb-0">จัดการประเภทสินค้า</h3></div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="btn btn-info"><a href="add_category.php">เพิ่ม</a></li>
-                </ol>
-              </div>
             </div>
             <!--end::Row-->
           </div>
