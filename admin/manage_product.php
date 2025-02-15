@@ -1,6 +1,6 @@
 <?php session_start();
 include("../include/config.php");
-error_reporting(0);
+//error_reporting(0);
 
 if (isset($_GET['did'])) {  
   $did = $_GET['did'];
@@ -125,7 +125,7 @@ if (isset($_GET['did'])) {
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">จัดการประเภทสินค้า</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">จัดการสินค้า</h3></div>
             </div>
             <!--end::Row-->
           </div>
@@ -148,46 +148,56 @@ if (isset($_GET['did'])) {
               <!-- Start col -->
              <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">จัดการประเภทสินค้า</h3></div>
+                  <div class="card-header"><h3 class="card-title">จัดการสินค้า</h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
-                  <a href="add_category.php" class="btn btn-primary">เพิ่ม</a>
-                    <table class="table table-bordered">
+                  <a href="add_product.php" class="btn btn-primary">เพิ่ม</a>
+                  <table class="table table-bordered">
                       <thead>
-                        <tr>                        
-                        <th style="width: 10px"> </th>
-                          <th><center>ประเภทสินค้า</center> </th>
-                          <th><center>ตัวเลือก</center> </th>
+                        <tr style="width: 10px">
+                          <th><center>รหัสสินค้า</center></th>
+                          <th><center>ชื่อสินค้า</center></th>
+                          <th><center>ประเภทสินค้า</center></th>
+                          <th><center>ราคาต้นทุน</center></th>
+                          <th><center>ราคาขาย</center></th>
+                          <th><center>รูปภาพ</center></th>
+                          <th><center>ตัวเลือก</center></th>
                         </tr>
-                        </thead>
-                        <?php
+                      </thead>
+                      
+                      <tbody>
+                      <?php
                         //เชื่อมต่อกับ database
-                            $ret="select * from category";
+                            $ret="select * from product";
                             $query = $dbh ->prepare($ret);
                             $query -> execute();
                             $results = $query -> fetchAll(PDO::FETCH_OBJ);
                             $cnt = 1;
-                            $cnc = 1;
+ 
                             if($query->rowCount() >0) {
                                 foreach($results as $row) {
                         ?>
                                     <tr class="align-middle">
-                                    <td><?php echo $cnt;?></td>
-                                    <td><?php echo $row->cat_name;?></td>
-                                    <td>
-                                      <center>
-                                            <a href="edit_category.php?cat_id=<?php echo $row->cat_id; ?>" class="btn btn-warning">แก้ไข</a>
-                                            &nbsp; &nbsp;
-                                            <a href="manage_category.php?did=<?php echo $row->cat_id; ?>" class="btn btn-danger" 
-                                            onclick="return confirm('ต้องการที่จะลบข้อมูลนี้หรือไม่?')">ลบ</a>
-
-                                      </center>
-                                    </td>
-                                    </tr>
-                        <?php     $cnt=$cnt+1;
+                                    <td><?php echo $row->pro_id;?></td>
+                                    <td><?php echo $row->pro_name;?></td>
+                                    <td><?php echo $row->cat_id;?></td>
+                                    <td><?php echo $row->pro_price;?></td>
+                                    <td><?php echo $row->pro_cost;?></td>
+                                    <td><center><img src="../uploads/ <?php echo $row->pro_img;?>" width="100px" height="100px"alt=""></center></td>
+                        <td>
+                        <center>
+                        <a href="edit_product.php?pro_id=<?php echo $row-> pro_id; ?>" class="btn btn-warning">แก้ไข</a>
+                        &nbsp; &nbsp;
+                        <a href="delete_product.php?pro_id=<?php echo $row->pro_id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล');">ลบ</a>
+                        </center>
+                        </td>
+                        </tr>
+                
+                <?php $cnt=$cnt+1;
                                }  
                             }    
                         ?>
+                        
                       </tbody>
                     </table>
                   </div>

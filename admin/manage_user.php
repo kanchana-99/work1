@@ -148,6 +148,7 @@ if (isset($_GET['did'])) {
                   <div class="card-header"><h3 class="card-title">จัดการผู้ใช้งาน</h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
+                  <a href="add_user.php" class="btn btn-primary">เพิ่ม</a>
                     <table class="table table-bordered">
                       <thead>
                         <tr>                        

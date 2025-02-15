@@ -8,7 +8,7 @@ error_reporting(0);
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>แก้ไขประเภทสินค้า</title>
+    <title>เพิ่มผู้ใช้งาน</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -105,10 +105,10 @@ error_reporting(0);
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">แก้ไขประเภทสินค้า</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">เพิ่มผู้ใช้งาน</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="manage_category.php">กลับ</a></li>
+                  <li class="breadcrumb-item"><a href="manage_user.php">กลับ</a></li>
                 </ol>
               </div>
             </div>
@@ -126,32 +126,39 @@ error_reporting(0);
               <!--begin::Col-->
               <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">แก้ไขประเภทสินค้า</h3></div>
+                  <div class="card-header"><h3 class="card-title">เพิ่มผู้ใช้งาน</h3></div>
                   <!-- /.card-header -->
-                  <form action="edit_category_api.php" method="post" >
-                    <?php $editid = $_GET['cat_id'];
-                    $sql = "SELECT * FROM category WHERE cat_id=:eid";
-                    $query = $dbh->prepare($sql);
-                    $query->bindParam(':eid',$editid,PDO::PARAM_STR);
-                    $query->execute();
-                    $results = $query->fetchAll(PDO::FETCH_OBJ);
+                  <div class="card-body">
 
-                    if($query->rowCount() >0){
-                       foreach($results as $row ){
-                       
-                      
-                    ?>
-                    <input type="hidden" name="eid" id="eid" value="<?php echo $editid;?>">
-                    <div class="form-group">
-                    <label for="cat_name">ชื่อประเภทสินค้า:</label>
-                    <input type="text" class="form-control" id="cat_name"  name="cat_name" required value="<?php echo $row->cat_name; ?>">
+                  <form action="add_user_api.php" method="post" >
+                    
+                <div class="form-group">
+                <label for="fullname">ชื่อ-สกุล:</label>
+                <input type="text" class="form-control" id="fullname" placeholder="พิมพ์ชื่อ-สกุลที่นี่" name="fullname" required value="<?php echo $row->fullname; ?>">
+                </div>
+                &nbsp;
+                <div class="form-group">
+                <label for="username">ชื่อผู้ใช้งาน:</label>
+                <input type="text" class="form-control" id="username" placeholder="พิมพ์ชื่อผู้ใช้งานที่นี่" name="username" required value="<?php echo $row->username; ?>">
+                </div>
+                &nbsp;
+                <div class="form-group">
+                <label for="useremail">อีเมลล์:</label>
+                <input type="email" class="form-control" id="useremail" placeholder="พิมพ์อีเมลล์ที่นี่" name="useremail" required value="<?php echo $row->useremail; ?>">
+                </div>
+                &nbsp;
+                <div class="form-group">
+                <label for="usermobile">เบอร์โทรศัพท์:</label>
+                <input type="text" maxlength="10" pattern="[0-9]{10}" title="ใส่ตัวเลขสิบหลักเท่านั้น" class="form-control" id="usermobile" placeholder="พิมพ์เบอร์โทรศัพท์ที่นี่" name="usermobile" required value="<?php echo $row->usermobile; ?>">
+                </div>
+                &nbsp;
+                <div class="form-group">
+                <label for="loginpassword">รหัสผ่าน:</label>
+                <input type="password" class="form-control" id="loginpassword" placeholder="พิมพ์รหัสผ่านที่นี่" name="loginpassword" required value="<?php echo $row->loginpassword; ?>">
+                </div>
                 
-             <?php
-                    }
-              }   
-                    ?>
         <br>
-        <button type="submit" class="btn btn-success" name="update" id="update">บันทึก</button>
+        <button type="submit" class="btn btn-success" name="save1" id="save1">บันทึก</button>
             </form>
                   </div>
                   <!-- /.card-body -->

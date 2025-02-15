@@ -8,7 +8,7 @@ error_reporting(0);
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>แก้ไขประเภทสินค้า</title>
+    <title>เพิ่มสินค้า</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -105,10 +105,10 @@ error_reporting(0);
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">แก้ไขประเภทสินค้า</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">เพิ่มสินค้า</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="manage_category.php">กลับ</a></li>
+                  <li class="breadcrumb-item"><a href="manage_product.php">กลับ</a></li>
                 </ol>
               </div>
             </div>
@@ -126,33 +126,40 @@ error_reporting(0);
               <!--begin::Col-->
               <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">แก้ไขประเภทสินค้า</h3></div>
+                  <div class="card-header"><h3 class="card-title">เพิ่มสินค้า</h3></div>
                   <!-- /.card-header -->
-                  <form action="edit_category_api.php" method="post" >
-                    <?php $editid = $_GET['cat_id'];
-                    $sql = "SELECT * FROM category WHERE cat_id=:eid";
-                    $query = $dbh->prepare($sql);
-                    $query->bindParam(':eid',$editid,PDO::PARAM_STR);
-                    $query->execute();
-                    $results = $query->fetchAll(PDO::FETCH_OBJ);
+                  <div class="card-body">
 
-                    if($query->rowCount() >0){
-                       foreach($results as $row ){
-                       
-                      
-                    ?>
-                    <input type="hidden" name="eid" id="eid" value="<?php echo $editid;?>">
-                    <div class="form-group">
-                    <label for="cat_name">ชื่อประเภทสินค้า:</label>
-                    <input type="text" class="form-control" id="cat_name"  name="cat_name" required value="<?php echo $row->cat_name; ?>">
-                
-             <?php
-                    }
-              }   
-                    ?>
-        <br>
-        <button type="submit" class="btn btn-success" name="update" id="update">บันทึก</button>
-            </form>
+                  <form action="add_product_api.php" method="post" enctype="multipart/form-data"> <!-- เพิ่ม enctype -->
+                    
+                      <div class="form-group">
+                          <label for="pro_name">ชื่อสินค้า:</label>
+                          <input type="text" class="form-control" id="pro_name" placeholder="พิมพ์ชื่อสินค้าที่นี่" name="pro_name" required>
+                      </div>
+                      &nbsp;
+                      <div class="form-group">
+                          <label for="cat_id">รหัสประเภทสินค้า:</label>
+                          <input type="number" class="form-control" id="cat_id" placeholder="พิมพ์รหัสประเภทสินค้าที่นี่" name="cat_id" required>
+                      </div>
+                      &nbsp;
+                      <div class="form-group">
+                          <label for="pro_price">ราคาต้นทุน:</label>
+                          <input type="number" class="form-control" id="pro_price" placeholder="พิมพ์ราคาต้นทุนที่นี่" name="pro_price" required>
+                      </div>
+                      &nbsp;
+                      <div class="form-group">
+                          <label for="pro_cost">ราคาขาย:</label>
+                          <input type="number" class="form-control" id="pro_cost" placeholder="พิมพ์ราคาขายที่นี่" name="pro_cost" required>
+                      </div>
+                      <br>
+                      <div class="form-group">
+                          <label for="pro_img">รูปภาพ:</label>
+                          <input type="file" name="pro_img" id="pro_img" class="form-control" required />
+                      </div>
+                      <br>
+                      <button type="submit" class="btn btn-success" name="save_button" id="save_button">บันทึก</button>
+                  </form>
+
                   </div>
                   <!-- /.card-body -->
 
@@ -163,16 +170,6 @@ error_reporting(0);
               </div>
               <!--end::Col-->
             </div>
-            <!--end::Row-->
-            <!--begin::Row-->
-            <div class="row">
-              <!-- Start col -->
-
-
-
-              <!-- /.Start col -->
-            </div>
-            <!-- /.row (main row) -->
           </div>
           <!--end::Container-->
         </div>
@@ -204,7 +201,7 @@ error_reporting(0);
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    <script src="../../dist/js/adminlte.js"></script>
+    <script src="/work1/dist/js/adminlte.js"></script>
    
   </body>
   <!--end::Body-->
