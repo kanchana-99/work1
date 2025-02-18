@@ -1,7 +1,8 @@
 <?php
 session_start();
 include("../include/config.php");
-error_reporting(0);
+//error_reporting(0);
+
 
 if (isset($_POST['save_button'])) {
     $filename = $_FILES['pro_img']['name'];
@@ -16,7 +17,7 @@ if (isset($_POST['save_button'])) {
         $milliseconds = round(microtime(true) * 1000);
         $newfilename = $milliseconds . "." . $ext;
         $tmpname = $_FILES['pro_img']['tmp_name'];
-        $moveto = '../uploads/' . $newfilename;
+        $moveto = '../uploads' . $newfilename;
 
         if (move_uploaded_file($tmpname, $moveto)) {
             chmod($moveto, 0777);
@@ -29,7 +30,7 @@ if (isset($_POST['save_button'])) {
             $cat_id = $_POST['cat_id'];
             $pro_price = $_POST['pro_price'];
             $pro_cost = $_POST['pro_cost'];
-            $pro_img = $newfilename; // ใช้ชื่อไฟล์ที่อัปโหลดสำเร็จ
+            $pro_img = 'work1/uploads/' . $newfilename; // เพิ่ม path ก่อนชื่อไฟล์
 
             // SQL Insert
             try {

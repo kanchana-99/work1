@@ -143,12 +143,12 @@ error_reporting(0);
                       </div>
                       &nbsp;
                       <div class="form-group">
-                          <label for="pro_price">ราคาต้นทุน:</label>
+                          <label for="pro_cost">ราคาต้นทุน:</label>
                           <input type="number" class="form-control" id="pro_price" placeholder="พิมพ์ราคาต้นทุนที่นี่" name="pro_price" required>
                       </div>
                       &nbsp;
                       <div class="form-group">
-                          <label for="pro_cost">ราคาขาย:</label>
+                          <label for="pro_price">ราคาขาย:</label>
                           <input type="number" class="form-control" id="pro_cost" placeholder="พิมพ์ราคาขายที่นี่" name="pro_cost" required>
                       </div>
                       <br>
