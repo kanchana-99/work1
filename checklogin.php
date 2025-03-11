@@ -24,30 +24,24 @@ try{
         }
         if ($_SESSION['user_type']==0) {
             echo "<script type='text/javascript'>";
-// <<<<<<< HEAD
+
             echo "alert('เข้าสู่ระบบเรียบร้อยแล้ว');";
-//=======
-            echo "alert('เข้าสู่ระบบเรียบร้อย');";
-//>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
+
             echo "document.location='admin/dashboard.php';";
             echo "</script>";
         }else {
             echo "<script type='text/javascript'>";
-//<<<<<<< HEAD
+
             echo "alert('เข้าสู่ระบบเรียบร้อยแล้ว');";
-//=======
-            echo "alert('เข้าสู่ระบบเรียบร้อย');";
-//>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
+
             echo "document.location='welcome.php';";
             echo "</script>";
         }
    }else{
         echo "<script type='text/javascript'>";
-//<<<<<<< HEAD
+
         echo "alert('Username หรือ Password ไม่ถูกต้อง');";
-//=======
-        echo "alert('username หรือ password ไม่ถูกต้อง');";
-//>>>>>>> 022653f5fba52008634a1554a2616e64b78bb1ab
+
         echo "document.location='login.php';";
         echo "</script>";
    }

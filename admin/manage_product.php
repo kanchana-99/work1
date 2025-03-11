@@ -1,6 +1,7 @@
-<?php session_start();
+<?php 
+session_start();
 include("../include/config.php");
-error_reporting(0);
+//error_reporting(0);
 
 if (isset($_GET['did'])) {  
   $did = $_GET['did'];
@@ -139,78 +140,102 @@ if (isset($_GET['did'])) {
             <!--end::Row-->
             <!--begin::Row-->
             <div class="row">
-              <!-- Start col -->
-             <div class="col-md-12">
+            <!-- Start col -->
+            <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">จัดการสินค้า</h3></div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                  <a href="add_product.php" class="btn btn-primary">เพิ่ม</a>
-                  <table class="table table-bordered">
-                      <thead>
-                        <tr style="width: 10px">
-                          <th><center>รหัสสินค้า</center></th>
-                          <th><center>ชื่อสินค้า</center></th>
-                          <th><center>ประเภทสินค้า</center></th>
-                          <th><center>ราคาต้นทุน</center></th>
-                          <th><center>ราคาขาย</center></th>
-                          <th><center>รูปภาพ</center></th>
-                          <th><center>ตัวเลือก</center></th>
-                        </tr>
-                      </thead>
-                      
-                      <tbody>
-                      <?php
-                        //เชื่อมต่อกับ database
-                            $ret="select * from product";
-                            $query = $dbh ->prepare($ret);
-                            $query -> execute();
-                            $results = $query -> fetchAll(PDO::FETCH_OBJ);
-                            $cnt = 1;
- 
-                            if($query->rowCount() >0) {
-                                foreach($results as $row) {
-                        ?>
-                                    <tr class="align-middle">
-                                    <td><?php echo $row->pro_id;?></td>
-                                    <td><?php echo $row->pro_name;?></td>
-                                    <td><?php echo $row->cat_id;?></td>
-                                    <td><?php echo $row->pro_price;?></td>
-                                    <td><?php echo $row->pro_cost;?></td>
-                                    <td><center><img src="../uploads/ <?php echo $row->pro_img;?>" width="100px" height="100px"alt=""></center></td>
-                        <td>
-                        <center>
-                        <a href="edit_product.php?pro_id=<?php echo $row-> pro_id; ?>" class="btn btn-warning">แก้ไข</a>
-                        &nbsp; &nbsp;
-                        <a href="delete_product.php?pro_id=<?php echo $row->pro_id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล');">ลบ</a>
-                        </center>
-                        </td>
-                        </tr>
-                
-                <?php $cnt=$cnt+1;
-                               }  
-                            }    
-                        ?>
-                        
-                      </tbody>
-                    </table>
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-end">
-                      <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
-                  </div>
+                    <div class="card-header">
+                        <h3 class="card-title">จัดการสินค้า</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <a href="add_product.php" class="btn btn-primary">เพิ่ม</a>
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                  <th><center>ID</center></th>
+                                  <th><center>ชื่อสินค้า</center></th>
+                                  <th><center>ประเภท</center></th>
+                                  <th><center>ราคาต้นทุน</center></th>
+                                  <th><center>ราคาขาย</center></th>
+                                  <th><center>รูปภาพ</center></th>
+                                  <th><center>ตัวเลือก</center></th> 
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = "SELECT * FROM product";
+                                $stmt = $dbh->prepare($sql);
+                                $stmt->execute();
+                                $results = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                                if ($stmt->rowCount() > 0) {
+                                    foreach ($results as $row) {
+                                ?>
+                                        <tr class="align-middle">
+                                            <td><?php echo htmlspecialchars($row->pro_id); ?></td>
+                                            <td><?php echo htmlspecialchars($row->pro_name); ?></td>
+                                            <td><?php echo htmlspecialchars($row->cat_id); ?></td>
+                                            <td><?php echo htmlspecialchars($row->pro_cost); ?></td>
+                                            <td><?php echo htmlspecialchars($row->pro_price); ?></td>
+                                            <td>
+                                                <center>
+                                                    <?php 
+                                                    $image_path = "uploads/" . $row->pro_img;
+
+                                                    // ถ้าไม่มีนามสกุล ลองเดาว่าเป็นไฟล์ประเภทไหน
+                                                    if (!file_exists($image_path)) {
+                                                        if (file_exists($image_path . ".png")) {
+                                                            $image_path .= ".png";
+                                                        } elseif (file_exists($image_path . ".jpg")) {
+                                                            $image_path .= ".jpg";
+                                                        } elseif (file_exists($image_path . ".jpeg")) {
+                                                            $image_path .= ".jpeg";
+                                                        } elseif (file_exists($image_path . ".gif")) {
+                                                            $image_path .= ".gif";
+                                                        } else {
+                                                            $image_path = ""; // ไม่มีรูปภาพ
+                                                        }
+                                                    }
+
+                                                    if (!empty($image_path)) { 
+                                                    ?>
+                                                        <img src="<?php echo htmlspecialchars($image_path); ?>" width="100px" height="100px" alt="">
+                                                    <?php } else { ?>
+                                                        <p style="color: red;">ไม่มีรูป</p>
+                                                    <?php } ?>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                <a href="edit_product.php?pro_id=<?php echo $row->pro_id; ?>" class="btn btn-warning">แก้ไข</a>
+                                                    &nbsp; &nbsp;
+                                                    <a href="delete_product.php?pro_id=<?php echo htmlspecialchars($row->pro_id); ?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล');">ลบ</a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-end">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <!-- /.card -->
-              </div>
-              <!-- /.Start col -->
             </div>
-            <!-- /.row (main row) -->
+            <!-- /.Start col -->
+        </div>
+            <!-- /.row (main row) --> 
           </div>
           <!--end::Container-->
         </div>
@@ -240,7 +265,7 @@ if (isset($_GET['did'])) {
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    <script src="../dist/js/adminlte.js"></script>
+    <script src="js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
       const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';

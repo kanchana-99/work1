@@ -14,10 +14,10 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="ระบบจัดการร้านค้า cute4U" />
 
-    <title>AdminLTE v4 | Dashboard</title>
+    <title>ระบบจัดการร้านค้า cute4U</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="title" content="AdminLTE v4 | Dashboard" />
+    <meta name="title" content="ระบบจัดการร้านค้า cute4U" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"

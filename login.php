@@ -1,6 +1,9 @@
 <?php
 include("include/config.php");
 error_reporting(0);
+
+session_start();
+$_SESSION['username'] = $username; // กำหนดค่า session หลังจาก login สำเร็จ
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,6 @@
 <?php session_start();
 include("../include/config.php");
-error_reporting(0);
+//error_reporting(0);
 ?>
 
 <!doctype html>
@@ -121,57 +121,53 @@ error_reporting(0);
         <div class="app-content">
           <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <!--begin::Col-->
-              <div class="col-md-12">
-                <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">เพิ่มสินค้า</h3></div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-
-                  <form action="add_product_api.php" method="post" enctype="multipart/form-data"> <!-- เพิ่ม enctype -->
-                    
-                      <div class="form-group">
-                          <label for="pro_name">ชื่อสินค้า:</label>
-                          <input type="text" class="form-control" id="pro_name" placeholder="พิมพ์ชื่อสินค้าที่นี่" name="pro_name" required>
-                      </div>
-                      &nbsp;
-                      <div class="form-group">
-                          <label for="cat_id">รหัสประเภทสินค้า:</label>
-                          <input type="number" class="form-control" id="cat_id" placeholder="พิมพ์รหัสประเภทสินค้าที่นี่" name="cat_id" required>
-                      </div>
-                      &nbsp;
-                      <div class="form-group">
-                          <label for="pro_cost">ราคาต้นทุน:</label>
-                          <input type="number" class="form-control" id="pro_price" placeholder="พิมพ์ราคาต้นทุนที่นี่" name="pro_price" required>
-                      </div>
-                      &nbsp;
-                      <div class="form-group">
-                          <label for="pro_price">ราคาขาย:</label>
-                          <input type="number" class="form-control" id="pro_cost" placeholder="พิมพ์ราคาขายที่นี่" name="pro_cost" required>
-                      </div>
-                      <br>
-                      <div class="form-group">
-                          <label for="pro_img">รูปภาพ:</label>
-                          <input type="file" name="pro_img" id="pro_img" class="form-control" required />
-                      </div>
-                      <br>
-                      <button type="submit" class="btn btn-success" name="save_button" id="save_button">บันทึก</button>
-                  </form>
-
-                  </div>
-                  <!-- /.card-body -->
-
+    <!--begin::Row-->
+    <div class="row">
+        <!--begin::Col-->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title">เพิ่มสินค้า</h3>
                 </div>
-                <!-- /.card -->
- 
-                <!-- /.card -->
-              </div>
-              <!--end::Col-->
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form action="add_product_api.php" method="post" enctype="multipart/form-data"> <!-- เพิ่ม enctype -->
+                        <div class="form-group">
+                            <label for="pro_name">ชื่อสินค้า:</label>
+                            <input type="text" class="form-control" id="pro_name" placeholder="พิมพ์ชื่อสินค้าที่นี่" name="pro_name" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="cat_id">รหัสประเภทสินค้า:</label>
+                            <input type="number" class="form-control" id="cat_id" placeholder="พิมพ์รหัสประเภทสินค้าที่นี่" name="cat_id" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="pro_cost">ราคาต้นทุน:</label>
+                            <input type="number" class="form-control" id="pro_cost" placeholder="พิมพ์ราคาต้นทุนที่นี่" name="pro_cost" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="pro_price">ราคาขาย:</label>
+                            <input type="number" class="form-control" id="pro_price" placeholder="พิมพ์ราคาขายที่นี่" name="pro_price" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="pro_img">รูปภาพ:</label>
+                            <input type="file" name="pro_img" id="pro_img" class="form-control" required />
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-success" name="save_button" id="save_button">บันทึก</button>
+                    </form>
+                </div>
+                <!-- /.card-body -->
             </div>
-          </div>
-          <!--end::Container-->
+            <!-- /.card -->
+        </div>
+        <!--end::Col-->
+    </div>
+</div>
+          <!--end::Container--> 
         </div>
         <!--end::App Content-->
       </main>
@@ -180,6 +176,14 @@ error_reporting(0);
       <?php include("include/footer.php");?>
       <!--end::Footer-->
     </div>
+    <script>
+document.querySelector("form").addEventListener("submit", function(event) {
+    if (!confirm("คุณต้องการบันทึกข้อมูลใช่หรือไม่?")) {
+        event.preventDefault(); // ป้องกันการ submit ถ้ากดยกเลิก
+    }
+});
+</script>
+
     <!--end::App Wrapper-->
     <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->

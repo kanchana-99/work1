@@ -156,6 +156,7 @@ if (isset($_GET['did'])) {
                       <thead>
                         <tr>                        
                         <th style="width: 10px"> </th>
+                          <th><center>ID</center></th>
                           <th><center>ประเภทสินค้า</center> </th>
                           <th><center>ตัวเลือก</center> </th>
                         </tr>
@@ -173,6 +174,7 @@ if (isset($_GET['did'])) {
                         ?>
                                     <tr class="align-middle">
                                     <td><?php echo $cnt;?></td>
+                                    <td><?php echo htmlspecialchars($row->cat_id); ?></td>
                                     <td><?php echo $row->cat_name;?></td>
                                     <td>
                                       <center>
